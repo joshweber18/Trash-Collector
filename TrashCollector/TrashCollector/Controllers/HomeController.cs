@@ -12,11 +12,11 @@ namespace TrashCollector.Controllers
         {
             if (User.IsInRole("Employee".Trim()))
             {
-                return RedirectToAction("EmployeeOptions", "Employees");
+                return RedirectToAction("PickupsForEmployee", "Pickups");
             }
             if (User.IsInRole("Customer".Trim()))
             {
-                return RedirectToAction("ProfileOptions", "Customers");
+                return RedirectToAction("Index", "Pickups");
             }
             return View();
         }

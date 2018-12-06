@@ -199,22 +199,23 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PickupsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812032021544_Initial.cs" />
-    <Compile Include="Migrations\201812032021544_Initial.Designer.cs">
-      <DependentUpon>201812032021544_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201812042225187_thing.cs" />
+    <Compile Include="Migrations\201812042225187_thing.Designer.cs">
+      <DependentUpon>201812042225187_thing.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812041357528_Altered AppUserId.cs" />
-    <Compile Include="Migrations\201812041357528_Altered AppUserId.Designer.cs">
-      <DependentUpon>201812041357528_Altered AppUserId.cs</DependentUpon>
+    <Compile Include="Migrations\201812051342286_system.datetime.cs" />
+    <Compile Include="Migrations\201812051342286_system.datetime.Designer.cs">
+      <DependentUpon>201812051342286_system.datetime.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812041421176_updated ID name in employee model.cs" />
-    <Compile Include="Migrations\201812041421176_updated ID name in employee model.Designer.cs">
-      <DependentUpon>201812041421176_updated ID name in employee model.cs</DependentUpon>
+    <Compile Include="Migrations\201812051348485_thingsss.cs" />
+    <Compile Include="Migrations\201812051348485_thingsss.Designer.cs">
+      <DependentUpon>201812051348485_thingsss.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Pickup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -296,7 +298,11 @@
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\User\User.cshtml" />
     <Content Include="Views\Role\Roles.cshtml" />
-    <Content Include="Views\Customers\ProfileOptions.cshtml" />
+    <Content Include="Views\Pickups\Index.cshtml" />
+    <Content Include="Views\Pickups\Details.cshtml" />
+    <Content Include="Views\Pickups\Create.cshtml" />
+    <Content Include="Views\Pickups\Edit.cshtml" />
+    <Content Include="Views\Pickups\PickupsForEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -315,14 +321,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812032021544_Initial.resx">
-      <DependentUpon>201812032021544_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812042225187_thing.resx">
+      <DependentUpon>201812042225187_thing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041357528_Altered AppUserId.resx">
-      <DependentUpon>201812041357528_Altered AppUserId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812051342286_system.datetime.resx">
+      <DependentUpon>201812051342286_system.datetime.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041421176_updated ID name in employee model.resx">
-      <DependentUpon>201812041421176_updated ID name in employee model.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812051348485_thingsss.resx">
+      <DependentUpon>201812051348485_thingsss.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,13 +7,13 @@ namespace TrashCollector.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AlteredAppUserId : IMigrationMetadata
+    public sealed partial class systemdatetime : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AlteredAppUserId));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(systemdatetime));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812041357528_Altered AppUserId"; }
+            get { return "201812051342286_system.datetime"; }
         }
         
         string IMigrationMetadata.Source

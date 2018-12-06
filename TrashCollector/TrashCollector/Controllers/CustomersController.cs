@@ -18,7 +18,9 @@ namespace TrashCollector.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customer.ToList());
+            string customer = User.Identity.GetUserId();
+            List<Customer> onecustomer = db.Customer.Where(c => c.AppUserID == customer).ToList();
+            return View(onecustomer);
         }
 
         // GET: Customers/Details/5
@@ -126,9 +128,6 @@ namespace TrashCollector.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult ProfileOptions(Customer customer)
-        {
-            
-        }
+   
     }
 }
