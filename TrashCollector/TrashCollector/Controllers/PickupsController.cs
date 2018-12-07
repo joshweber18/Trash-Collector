@@ -14,6 +14,7 @@ namespace TrashCollector.Controllers
     public class PickupsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        // List<string> days = new List<string>();
 
         // GET: Pickups
         public ActionResult Index()
@@ -92,14 +93,9 @@ namespace TrashCollector.Controllers
         {
             string AppCutID = User.Identity.GetUserId();
             var pickupcustomer = db.Customer.Where(s => s.AppUserID == AppCutID).Single();
-            pickup.CustomerID = pickupcustomer.CustomerID;
-
-            if (ModelState.IsValid)
-            {
-                db.Entry(pickup).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            Pickup pickupToEdit = db.Pickups.Where(p => p.CustomerID == pickupcustomer.CustomerID).Single();
+            pickupToEdit.PickupDay = pickup.PickupDay;
+            db.SaveChanges();
             ViewBag.CustomerID = new SelectList(db.Customer, "CustomerID", "PickupDay", pickup.CustomerID);
             return View(pickup);
         }
@@ -130,23 +126,102 @@ namespace TrashCollector.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult PickupsForEmployee()
+        //public ActionResult PickupsForEmployee()
+        //{
+        //    if (User.IsInRole("Customer"))
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    string employeeId = User.Identity.GetUserId();
+        //    var employer = db.Employee.Where(e => e.AppUserID == employeeId).FirstOrDefault();
+
+        //    List<int> customerIds = db.Customer.Where(c => c.ZipCode == employer.ZipCode).Select(c => c.CustomerID).ToList();
+        //    List<Pickup> pickupsInZip = db.Pickups.Where(p => customerIds.Contains(p.CustomerID)).Include(p => p.Customer).ToList();
+        //    List<Pickup> pickupsInZipNoVacay = pickupsInZip.Where(p => !(p.VacaStart < DateTime.Now && p.VacaEnd > DateTime.Now)).ToList();
+
+        //    return View(pickupsInZipNoVacay);
+        //}
+
+        [AllowAnonymous]
+        public ActionResult PickupsByDay()
         {
-            if (User.IsInRole("Customer"))
+            if (User.IsInRole ("Customer"))
             {
                 return HttpNotFound();
             }
 
             string employeeId = User.Identity.GetUserId();
-            var employer = db.Employee.Where(e => e.AppUserID == employeeId).FirstOrDefault();
+            var employee = db.Employee.Where(e => e.AppUserID == employeeId).FirstOrDefault();
 
-            List<int> customerIds = db.Customer.Where(c => c.ZipCode == employer.ZipCode).Select(c => c.CustomerID).ToList();
-            List<Pickup> pickupsInZip = db.Pickups.Where(p => customerIds.Contains(p.CustomerID)).Include(p => p.Customer).ToList();
-            List<Pickup> pickupsInZipNoVacay = pickupsInZip.Where(p => !(p.VacaStart < DateTime.Now && p.VacaEnd > DateTime.Now)).ToList();
+            PickupDayViewModel pdvm = new PickupDayViewModel();
 
-            return View(pickupsInZipNoVacay);
+            var pickups = db.Pickups;
+
+            var thing = pickups.ToList();
+            foreach(var item in thing)
+            {
+                item.Customer = db.Customer.Where(c =>c.CustomerID == item.CustomerID).Single();
+            }
+
+            List<string> days = new List<string>();
+            days.Add("Monday");
+            days.Add("Tuesday");
+            days.Add("Wednesday");
+            days.Add("Thursday");
+            days.Add("Friday");
+            days.Add("Saturday");
+
+            ViewBag.Days = days;
+
+            return View(thing);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult PickupsByDay(PickupDayViewModel model)
+        {
+
+            List<string> days = new List<string>();
+            days.Add("Monday");
+            days.Add("Tuesday");
+            days.Add("Wednesday");
+            days.Add("Thursday");
+            days.Add("Friday");
+            days.Add("Saturday");
+
+            ViewBag.Days = days;
+
+            if (model.DaySearch == null)
+            {
+                
+            }
+            else
+            {
+                string employeeId = User.Identity.GetUserId();
+                var employer = db.Employee.Where(e => e.AppUserID == employeeId).FirstOrDefault();
+                List<int> customerIds = db.Customer.Where(c => c.ZipCode == employer.ZipCode).Select(c => c.CustomerID).ToList();
+                List<Pickup> pickupsInZip = db.Pickups.Where(p => customerIds.Contains(p.CustomerID)).Include(p => p.Customer).ToList();
+                List<Pickup> pickupsInZipNoVacay = pickupsInZip.Where(p => !((p.VacaStart < DateTime.Now) && (p.VacaEnd > DateTime.Now))).ToList();
+                var pickupsSameDay = pickupsInZipNoVacay.Where(p => p.PickupDay == model.DaySearch);
+
+                PickupDayViewModel pdvm = new PickupDayViewModel();
+                
+                List<Pickup> Listthing = pickupsSameDay.ToList();
+
+                return View(Listthing);
+            }
+            return RedirectToAction("Index", "Pickups");
+        }
+
+        public ActionResult ChangeBalance(int? id)
+        {
+            Customer customer = db.Customer.Find(id);
+            customer.PickupStatus = true;
+            customer.BalanceDue += 40;
+            db.SaveChanges();
+            return RedirectToAction("PickupsByDay", "Pickups");
+        }
 
         protected override void Dispose(bool disposing)
         {

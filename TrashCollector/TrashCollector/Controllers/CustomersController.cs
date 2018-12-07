@@ -56,7 +56,7 @@ namespace TrashCollector.Controllers
             {
                 db.Customer.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Pickups");
             }
 
             return View(customer);
@@ -118,6 +118,8 @@ namespace TrashCollector.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

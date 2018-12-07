@@ -13,6 +13,8 @@ namespace TrashCollector.Models
         public int CustomerID { get; set; }
         public string Address { get; set; }
         public int ZipCode { get; set; }
+        public double BalanceDue { get; set; }
+        public bool PickupStatus { get; set; }
 
         [ForeignKey("ApplicationUser")]
         [Display(Name = "User Type")]

@@ -27,7 +27,7 @@
             <div class="col-md-10">
 
                 @Html.EditorFor(model => model.VacaStart, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.TextBoxFor(m => m.VacaStart, "{0:MM/dd/yyyy}")
+                @*@Html.TextBoxFor(m => m.VacaStart, "{0:MM/dd/yyyy}")*@
                 @Html.ValidationMessageFor(model => model.VacaStart, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -54,7 +54,7 @@ namespace TrashCollector.Controllers
             {
                 db.Employee.Add(employee);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("PickupsByDay", "Pickups");
             }
 
             return View(employee);
@@ -115,6 +115,14 @@ namespace TrashCollector.Controllers
             db.Employee.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ChangeBalance(int? id)
+        {
+            Customer customer = db.Customer.Find(id);
+            customer.BalanceDue += 40;
+            db.SaveChanges();
+            return RedirectToAction("PickupsByDay", "Pickups");
         }
 
         protected override void Dispose(bool disposing)

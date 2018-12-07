@@ -1,0 +1,73 @@
+﻿@model List<TrashCollector.Models.Pickup>
+
+
+@{
+    ViewBag.Title = "PickupsByDay";
+}
+
+<h2>PickupsByDay</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickupDay)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.VacaStart)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VacaEnd)
+                </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.ExtraPickup)
+        </td>
+        <td>
+            @{
+                if (item.Customer.PickupStatus == true)
+                {
+                @Html.ActionLink("Pickup", "BalanceDue", "Pickups", new { id = item.CustomerID }, new { @class = "btn btn-success btn-large" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.PickupId })
+                @Html.ActionLink("Details", "Details", new { id = item.PickupId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.PickupId })
+                }
+                else
+                {
+                @Html.ActionLink("Edit", "Edit", new { id = item.PickupId }) 
+                @Html.ActionLink("Details", "Details", new { id = item.PickupId })
+                @Html.ActionLink("Delete", "Delete", new { id = item.PickupId })
+                }
+             }
+
+
+        </td>
+    </tr>
+    <br />
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.DropDownList("DaySearch", new SelectList(ViewBag.Days))
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+

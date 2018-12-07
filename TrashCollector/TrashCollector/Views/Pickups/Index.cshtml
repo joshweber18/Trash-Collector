@@ -26,6 +26,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ExtraPickup)
         </th>
+        <td>
+            @Html.DisplayNameFor(model => model.Customer.BalanceDue)
+        </td>
         <th></th>
     </tr>
 
@@ -47,9 +50,12 @@
             @Html.DisplayFor(modelItem => item.ExtraPickup)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PickupId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PickupId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PickupId })
+            @Html.DisplayFor(modelItem => item.Customer.BalanceDue)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.PickupId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.PickupId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PickupId })
         </td>
     </tr>
 }

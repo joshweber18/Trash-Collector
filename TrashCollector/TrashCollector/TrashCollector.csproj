@@ -217,6 +217,18 @@
     <Compile Include="Migrations\201812051348485_thingsss.Designer.cs">
       <DependentUpon>201812051348485_thingsss.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812071333075_balance due.cs" />
+    <Compile Include="Migrations\201812071333075_balance due.Designer.cs">
+      <DependentUpon>201812071333075_balance due.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812071405158_spellingg.cs" />
+    <Compile Include="Migrations\201812071405158_spellingg.Designer.cs">
+      <DependentUpon>201812071405158_spellingg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812071615532_pickup status.cs" />
+    <Compile Include="Migrations\201812071615532_pickup status.Designer.cs">
+      <DependentUpon>201812071615532_pickup status.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -224,6 +236,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pickup.cs" />
+    <Compile Include="Models\PickupDayViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -303,6 +316,7 @@
     <Content Include="Views\Pickups\Create.cshtml" />
     <Content Include="Views\Pickups\Edit.cshtml" />
     <Content Include="Views\Pickups\PickupsForEmployee.cshtml" />
+    <Content Include="Views\Pickups\PickupsByDay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +343,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812051348485_thingsss.resx">
       <DependentUpon>201812051348485_thingsss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812071333075_balance due.resx">
+      <DependentUpon>201812071333075_balance due.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812071405158_spellingg.resx">
+      <DependentUpon>201812071405158_spellingg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812071615532_pickup status.resx">
+      <DependentUpon>201812071615532_pickup status.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
