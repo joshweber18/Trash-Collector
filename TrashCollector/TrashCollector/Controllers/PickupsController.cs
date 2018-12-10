@@ -203,7 +203,7 @@ namespace TrashCollector.Controllers
                 List<int> customerIds = db.Customer.Where(c => c.ZipCode == employer.ZipCode).Select(c => c.CustomerID).ToList();
                 List<Pickup> pickupsInZip = db.Pickups.Where(p => customerIds.Contains(p.CustomerID)).Include(p => p.Customer).ToList();
                 List<Pickup> pickupsInZipNoVacay = pickupsInZip.Where(p => !((p.VacaStart < DateTime.Now) && (p.VacaEnd > DateTime.Now))).ToList();
-                var pickupsSameDay = pickupsInZipNoVacay.Where(p => p.PickupDay == model.DaySearch);
+                var pickupsSameDay = pickupsInZipNoVacay.Where(p => (p.PickupDay == model.DaySearch) || (p.ExtraPickup == DateTime.Today));
 
                 PickupDayViewModel pdvm = new PickupDayViewModel();
                 

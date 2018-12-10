@@ -33,18 +33,18 @@
             @{
                 if (item.Customer.PickupStatus == true)
                 {
-                @Html.ActionLink("Pickup", "BalanceDue", "Pickups", new { id = item.CustomerID }, new { @class = "btn btn-success btn-large" })
-                @Html.ActionLink("Edit", "Edit", new { id = item.PickupId })
-                @Html.ActionLink("Details", "Details", new { id = item.PickupId })
-                @Html.ActionLink("Delete", "Delete", new { id = item.PickupId })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PickupId })
+                    @Html.ActionLink("Details", "Details", new { id = item.PickupId })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PickupId })
                 }
                 else
                 {
-                @Html.ActionLink("Edit", "Edit", new { id = item.PickupId }) 
-                @Html.ActionLink("Details", "Details", new { id = item.PickupId })
-                @Html.ActionLink("Delete", "Delete", new { id = item.PickupId })
+                    @Html.ActionLink("Pickup", "ChangeBalance", "Pickups", new { id = item.CustomerID }, new { @class = "btn btn-success btn-large" })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PickupId })
+                    @Html.ActionLink("Details", "Details", new { id = item.PickupId })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PickupId })
                 }
-             }
+            }
 
 
         </td>
